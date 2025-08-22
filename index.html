@@ -1,36 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Slip It In</title>
   <style>
-    :root { --pad: 14px; --radius: 12px; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: #0e0f12; color: #e7e9ea; }
-    header { padding: 20px var(--pad); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #23262d; position: sticky; top: 0; background: #0e0f12; z-index: 5; }
-    h1 { font-size: 20px; margin: 0; letter-spacing: 0.3px; }
-    main { max-width: 980px; margin: 0 auto; padding: 24px var(--pad) 80px; display: grid; gap: 18px; }
-    .card { background: #151922; border: 1px solid #23262d; border-radius: var(--radius); padding: 18px; }
-    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    input[type="text"] { background: #0f1320; border: 1px solid #2a2e39; color: #e7e9ea; padding: 12px 14px; border-radius: 10px; outline: none; width: 260px; }
-    button { padding: 10px 14px; border-radius: 10px; border: 1px solid #2f80ff44; background: #2f80ff22; color: #ebf1ff; cursor: pointer; }
-    button[disabled] { opacity: 0.6; cursor: not-allowed; }
-    .muted { color: #9aa4b2; }
-    .phrase { font-size: 18px; line-height: 1.4; padding: 12px 14px; border-radius: 10px; background: #0f1320; border: 1px dashed #2a2e39; }
-    .leader { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
-    .leaders { display: grid; gap: 8px; }
-    .pill { padding: 6px 10px; border-radius: 999px; background: #0f1320; border: 1px solid #2a2e39; font-size: 12px; }
-    .danger { border-color: #ff4d4d66; background: #ff4d4d22; }
-    .success { border-color: #2ecc7166; background: #2ecc7122; }
-    .notice { border-color: #f1c40f66; background: #f1c40f22; }
-    .section-title { margin: 0 0 8px; font-size: 14px; color: #9aa4b2; text-transform: uppercase; letter-spacing: 0.08em; }
-    .vote-grid { display: grid; gap: 10px; }
-    .small { font-size: 12px; }
-    a { color: #7eb5ff; }
-    .hidden { display:none; }
+    :root {
+      --pad: 14px;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: #0e0f12;
+      color: #e7e9ea;
+    }
+
+    header {
+      padding: 20px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #23262d;
+      position: sticky;
+      top: 0;
+      background: #0e0f12;
+      z-index: 5;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 0;
+      letter-spacing: 0.3px;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px var(--pad) 80px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: #151922;
+      border: 1px solid #23262d;
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      background: #0f1320;
+      border: 1px solid #2a2e39;
+      color: #e7e9ea;
+      padding: 12px 14px;
+      border-radius: 10px;
+      outline: none;
+      width: 260px;
+    }
+
+    button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #2f80ff44;
+      background: #2f80ff22;
+      color: #ebf1ff;
+      cursor: pointer;
+    }
+
+    button[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .muted {
+      color: #9aa4b2;
+    }
+
+    .phrase {
+      font-size: 18px;
+      line-height: 1.4;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #0f1320;
+      border: 1px dashed #2a2e39;
+    }
+
+    .leader {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .leaders {
+      display: grid;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #0f1320;
+      border: 1px solid #2a2e39;
+      font-size: 12px;
+    }
+
+    .danger {
+      border-color: #ff4d4d66;
+      background: #ff4d4d22;
+    }
+
+    .success {
+      border-color: #2ecc7166;
+      background: #2ecc7122;
+    }
+
+    .notice {
+      border-color: #f1c40f66;
+      background: #f1c40f22;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #9aa4b2;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .vote-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .small {
+      font-size: 12px;
+    }
+
+    a {
+      color: #7eb5ff;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Slip It In</h1>
@@ -57,7 +187,8 @@
         <button id="loginBtn" class="notice">Sign In</button>
         <button id="leaveBtn" class="danger" disabled>Leave</button>
       </div>
-      <p class="muted small">If cookies clear, just sign in again with your username and password to restore progress.</p>
+      <p class="muted small">If cookies clear, just sign in again with your username and password to restore progress.
+      </p>
     </section>
 
     <!-- Your phrase + action -->
@@ -66,7 +197,7 @@
       <div id="phraseBox" class="phrase muted">Join to receive your phrase…</div>
       <div class="row" style="margin-top:10px;">
         <button id="usedBtn" disabled>👀 I used my phrase — start vote</button>
-        <button id="newPhraseBtn" class="notice" disabled>🔁 Reroll (if stuck)</button>
+        <button id="newPhraseBtn" class="notice" disabled>🔁 Reroll</button>
       </div>
       <p class="small muted">Reroll uses the next available phrase and returns yours to the pool.</p>
     </section>
@@ -98,6 +229,18 @@
           <button id="resetPhrasesBtn" class="danger">Reset phrases (delete all)</button>
           <span class="muted small">Uploads each line as a phrase document if the pool is empty.</span>
         </div>
+        <div class="row" style="margin-top:10px;">
+          <input id="adminPlayer" type="text" placeholder="Username to edit" maxlength="24" />
+          <button id="adminAddPoint">+1 point</button>
+          <button id="adminSubPoint">-1 point</button>
+          <input id="adminSetScore" type="number" placeholder="Set score" min="0" style="width:120px;" />
+          <button id="adminSetScoreBtn">Set</button>
+        </div>
+        <div class="row" style="margin-top:8px;">
+          <input id="adminNewName" type="text" placeholder="Rename to…" maxlength="24" />
+          <button id="adminRenameBtn">Rename player</button>
+          <button id="adminRemovePlayer" class="danger">Remove player</button>
+        </div>
       </section>
     </div>
   </main>
@@ -106,7 +249,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
     import { getAuth, signInAnonymously, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, addDoc, getDocs, updateDoc, deleteDoc, onSnapshot, query, where, collection, orderBy, limit, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, getDoc, addDoc, getDocs, updateDoc, deleteDoc, onSnapshot, query, where, collection, orderBy, limit, serverTimestamp, runTransaction, increment } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
     import { getAnalytics, isSupported as analyticsSupported } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
 
     // ===================== CONFIG =====================
@@ -150,6 +293,156 @@
     const playerPassInput = document.getElementById('playerPass');
     const createBtn = document.getElementById('createBtn');
     const loginBtn = document.getElementById('loginBtn');
+    // Admin controls for leaderboard editing
+    const adminPlayer = document.getElementById('adminPlayer');
+    const adminAddPoint = document.getElementById('adminAddPoint');
+    const adminSubPoint = document.getElementById('adminSubPoint');
+    const adminSetScore = document.getElementById('adminSetScore');
+    const adminSetScoreBtn = document.getElementById('adminSetScoreBtn');
+    const adminNewName = document.getElementById('adminNewName');
+    const adminRenameBtn = document.getElementById('adminRenameBtn');
+    const adminRemovePlayer = document.getElementById('adminRemovePlayer');
+    // ==== Admin leaderboard helpers ====
+    function adminPlayerRef(name) { return doc(db, 'rooms', ROOM_ID, 'players', name); }
+    async function requirePlayer(name) {
+      const n = (name || '').trim();
+      if (!n) throw new Error('Enter a username');
+      const ref = adminPlayerRef(n);
+      const snap = await getDoc(ref);
+      if (!snap.exists()) throw new Error('Player not found');
+      return { ref, data: snap.data(), name: n };
+    }
+    // Admin: Add point
+    adminAddPoint?.addEventListener('click', async () => {
+      try {
+        const { ref, data } = await requirePlayer(adminPlayer.value);
+        await runTransaction(db, async (tx) => {
+          const s = await tx.get(ref);
+          if (!s.exists()) throw new Error('Player not found');
+          const cur = s.data().score || 0;
+          tx.update(ref, { score: cur + 1, updatedAt: serverTimestamp() });
+        });
+      } catch (e) { showError(e.message || e); }
+    });
+
+    // Admin: Subtract point
+    adminSubPoint?.addEventListener('click', async () => {
+      try {
+        const { ref } = await requirePlayer(adminPlayer.value);
+        await runTransaction(db, async (tx) => {
+          const s = await tx.get(ref);
+          if (!s.exists()) throw new Error('Player not found');
+          const cur = s.data().score || 0;
+          tx.update(ref, { score: Math.max(0, cur - 1), updatedAt: serverTimestamp() });
+        });
+      } catch (e) { showError(e.message || e); }
+    });
+
+    // Admin: Set score
+    adminSetScoreBtn?.addEventListener('click', async () => {
+      try {
+        const target = parseInt(adminSetScore.value, 10);
+        if (Number.isNaN(target) || target < 0) throw new Error('Enter a non-negative number');
+        const { ref } = await requirePlayer(adminPlayer.value);
+        await updateDoc(ref, { score: target, updatedAt: serverTimestamp() });
+      } catch (e) { showError(e.message || e); }
+    });
+
+    // Admin: Rename player
+    adminRenameBtn?.addEventListener('click', async () => {
+      try {
+        const oldName = (adminPlayer.value || '').trim();
+        const newName = (adminNewName.value || '').trim();
+        if (!oldName || !newName) throw new Error('Enter both current and new username');
+        if (oldName === newName) throw new Error('New username must be different');
+
+        const oldRef = adminPlayerRef(oldName);
+        const oldSnap = await getDoc(oldRef);
+        if (!oldSnap.exists()) throw new Error('Player not found');
+        const oldData = oldSnap.data();
+
+        const newRef = adminPlayerRef(newName);
+        const newSnap = await getDoc(newRef);
+        if (newSnap.exists()) throw new Error('New username already exists');
+
+        // Create new doc, delete old, and update phrase assignment & active vote
+        await runTransaction(db, async (tx) => {
+          const s = await tx.get(oldRef);
+          if (!s.exists()) throw new Error('Player not found');
+          const d = s.data();
+          tx.set(newRef, { ...d, name: newName, updatedAt: serverTimestamp() });
+          tx.delete(oldRef);
+        });
+
+        // Update any phrase assignedTo == oldName -> newName
+        const poolRef = collection(db, 'rooms', ROOM_ID, 'phrases');
+        const assigned = await getDocs(query(poolRef, where('assignedTo', '==', oldName)));
+        for (const docSnap of assigned.docs) {
+          await updateDoc(docSnap.ref, { assignedTo: newName });
+        }
+        // If this user had a phraseId on their new doc, ensure consistency (already carried).
+
+        // If an active vote references oldName, update it
+        const voteRef = doc(db, 'rooms', ROOM_ID, 'state', 'vote');
+        const voteSnap = await getDoc(voteRef);
+        if (voteSnap.exists()) {
+          const vd = voteSnap.data();
+          if (vd.active && vd.candidate === oldName) {
+            await updateDoc(voteRef, { candidate: newName });
+          }
+          if (vd.yes && vd.yes[oldName]) {
+            const yes = { ...vd.yes };
+            delete yes[oldName];
+            yes[newName] = true;
+            await updateDoc(voteRef, { yes });
+          }
+        }
+
+        // If the admin renamed the currently signed-in player, reflect locally
+        if (PLAYER_ID === oldName) {
+          PLAYER_ID = newName;
+          localStorage.setItem('slip_player', PLAYER_ID);
+          playerNameInput.value = PLAYER_ID;
+        }
+
+        alert(`Renamed ${oldName} → ${newName}`);
+      } catch (e) { showError(e.message || e); }
+    });
+
+    // Admin: Remove player
+    adminRemovePlayer?.addEventListener('click', async () => {
+      try {
+        const name = (adminPlayer.value || '').trim();
+        if (!name) throw new Error('Enter a username');
+        if (!confirm(`Remove player "${name}"? This cannot be undone.`)) return;
+        await runTransaction(db, async (tx) => {
+          const pref = adminPlayerRef(name);
+          const psnap = await tx.get(pref);
+          if (!psnap.exists()) throw new Error('Player not found');
+          const d = psnap.data();
+          if (d.phraseId) {
+            tx.update(doc(db, 'rooms', ROOM_ID, 'phrases', d.phraseId), { assignedTo: null });
+          }
+          tx.delete(pref);
+        });
+        // Clear from active vote yes map if present
+        const voteRef = doc(db, 'rooms', ROOM_ID, 'state', 'vote');
+        const voteSnap = await getDoc(voteRef);
+        if (voteSnap.exists()) {
+          const vd = voteSnap.data();
+          if (vd.yes && vd.yes[name]) {
+            const yes = { ...vd.yes };
+            delete yes[name];
+            await updateDoc(voteRef, { yes });
+          }
+          if (vd.active && vd.candidate === name) {
+            // Cancel the vote if the candidate was removed
+            await updateDoc(voteRef, { active: false, candidate: null, endedAt: serverTimestamp() });
+          }
+        }
+        alert(`Removed player ${name}`);
+      } catch (e) { showError(e.message || e); }
+    });
     // Game identity (username-driven, not Firebase Auth)
     let PLAYER_ID = null; // equals chosen username
 
@@ -301,39 +594,34 @@
 
     // ===================== ASSIGN / REROLL =====================
     async function hydrateMyPhrase() {
-      if (!PLAYER_ID) { setPhraseText('Sign in to get a phrase.'); return; }
-      const pref = doc(db, 'rooms', ROOM_ID, 'players', PLAYER_ID);
-      const psnap = await getDoc(pref);
-      if (psnap.exists()) {
-        myProfile = psnap.data();
-        myPhraseId = myProfile?.phraseId || null;
-        if (myPhraseId) {
-          const phrRef = doc(db, 'rooms', ROOM_ID, 'phrases', myPhraseId);
-          const phrSnap = await getDoc(phrRef);
-          setPhraseText(phrSnap.exists() ? phrSnap.data().phrase : '');
-        } else {
-          setPhraseText('Click Sign In/Create then press Reroll to get a phrase.');
-        }
+      myPhraseId = myProfile?.phraseId || null;
+      // Lock controls based on phrase state
+      if (myPhraseId) {
+        newPhraseBtn.disabled = true;   // cannot reroll while holding a phrase
+        usedBtn.disabled = false;       // can start vote
+        const phrRef = doc(db, 'rooms', ROOM_ID, 'phrases', myPhraseId);
+        const phrSnap = await getDoc(phrRef);
+        setPhraseText(phrSnap.exists() ? phrSnap.data().phrase : '');
       } else {
-        setPhraseText('Create an account to get a phrase.');
+        newPhraseBtn.disabled = false;  // can get a phrase only when none assigned
+        usedBtn.disabled = true;        // cannot start vote without a phrase
+        setPhraseText('Click Sign In/Create then press Reroll to get a phrase.');
       }
     }
 
-    async function assignPhraseIfNeeded(reroll = false) {
+    async function assignPhraseIfNeeded() {
       if (!PLAYER_ID) throw new Error('Not signed in');
       await runTransaction(db, async (tx) => {
         const uref = doc(db, 'rooms', ROOM_ID, 'players', PLAYER_ID);
         const usnap = await tx.get(uref);
         if (!usnap.exists()) throw new Error('Player not found');
         const udata = usnap.data();
-        if (reroll && udata.phraseId) {
-          tx.update(doc(db, 'rooms', ROOM_ID, 'phrases', udata.phraseId), { assignedTo: null });
-          udata.phraseId = null;
-        }
         if (udata.phraseId) return; // already have one
+
         const poolRef = collection(db, 'rooms', ROOM_ID, 'phrases');
         const qSnap = await getDocs(query(poolRef, where('assignedTo', '==', null), limit(1)));
         if (qSnap.empty) throw new Error('No phrases left');
+
         const pick = qSnap.docs[0];
         tx.update(doc(db, 'rooms', ROOM_ID, 'phrases', pick.id), { assignedTo: PLAYER_ID });
         tx.update(uref, { phraseId: pick.id, updatedAt: serverTimestamp() });
@@ -343,17 +631,23 @@
     }
 
     newPhraseBtn.addEventListener('click', async () => {
-      try { await assignPhraseIfNeeded(true); } catch (e) { showError(e.message); }
+      try {
+        if (myPhraseId) {
+          return showError('You already have a phrase. You can only get a new one after the vote concludes.');
+        }
+        await assignPhraseIfNeeded();
+      } catch (e) { showError(e.message); }
     });
 
     // ===================== VOTING =====================
     usedBtn.addEventListener('click', async () => {
       if (!PLAYER_ID) return showError('Sign in first');
+      if (!myPhraseId) return showError('You need a phrase assigned before starting a vote.');
       const voteDoc = doc(db, 'rooms', ROOM_ID, 'state', 'vote');
       await runTransaction(db, async (tx) => {
         const vsnap = await tx.get(voteDoc);
         if (vsnap.exists() && vsnap.data().active) throw new Error('Another vote is already active');
-        tx.set(voteDoc, { active: true, candidate: PLAYER_ID, yes: {}, startedAt: serverTimestamp() });
+        tx.set(voteDoc, { active: true, candidate: PLAYER_ID, yes: {}, startedAt: serverTimestamp(), failed: false });
       }).catch(e => showError(e?.message || e));
     });
 
@@ -395,6 +689,38 @@
       });
       voteArea.appendChild(btn);
 
+      const noBtn = document.createElement('button');
+      noBtn.textContent = 'No — they fail';
+      noBtn.className = 'danger';
+      noBtn.disabled = !PLAYER_ID;
+      noBtn.addEventListener('click', async () => {
+        const voteDoc = doc(db, 'rooms', ROOM_ID, 'state', 'vote');
+        await runTransaction(db, async (tx) => {
+          const vsnap = await tx.get(voteDoc);
+          if (!vsnap.exists()) return;
+          const dv = vsnap.data();
+          if (!dv.active) return; // already handled
+
+          // Decrement candidate score by 1 (allow negatives) and scrap their phrase
+          const uref = doc(db, 'rooms', ROOM_ID, 'players', dv.candidate);
+          const usnap = await tx.get(uref);
+          if (usnap.exists()) {
+            const udata = usnap.data();
+            const cur = typeof udata.score === 'number' ? udata.score : (parseFloat(udata.score) || 0);
+            tx.update(uref, { score: cur - 1, updatedAt: serverTimestamp() });
+            if (udata.phraseId) {
+              const pref = doc(db, 'rooms', ROOM_ID, 'phrases', udata.phraseId);
+              tx.update(pref, { used: true, assignedTo: null }); // scrap it
+              tx.update(uref, { phraseId: null });
+            }
+          }
+
+          // Close vote as failed
+          tx.set(voteDoc, { active: false, candidate: null, yes: {}, endedAt: serverTimestamp(), failed: true });
+        });
+      });
+      voteArea.appendChild(noBtn);
+
       // Compute outcome with active players
       const playersSnap = await getDocs(query(collection(db, 'rooms', ROOM_ID, 'players'), where('active', '==', true)));
       const activeIds = playersSnap.docs.map(d => d.id);
@@ -407,27 +733,33 @@
       voteArea.appendChild(info);
 
       if (unanimous) {
-        // award point & give new phrase inside a transaction and clear vote
         await runTransaction(db, async (tx) => {
-          // increment score
-          const uref = doc(db, 'rooms', ROOM_ID, 'players', v.candidate);
+          const voteRef = doc(db, 'rooms', ROOM_ID, 'state', 'vote');
+          const voteSnap = await tx.get(voteRef);
+          if (!voteSnap.exists()) return; // nothing to do
+          const vd = voteSnap.data();
+          if (!vd.active) return; // someone else already closed/scored
+
+          // Award exactly one point atomically
+          const uref = doc(db, 'rooms', ROOM_ID, 'players', vd.candidate);
           const usnap = await tx.get(uref);
           if (usnap.exists()) {
             const udata = usnap.data();
-            tx.update(uref, { score: (udata.score || 0) + 1, updatedAt: serverTimestamp() });
-            // return old phrase to used=true and clear from user
+            tx.update(uref, { score: increment(1), updatedAt: serverTimestamp() });
             if (udata.phraseId) {
               const pref = doc(db, 'rooms', ROOM_ID, 'phrases', udata.phraseId);
               tx.update(pref, { used: true, assignedTo: null });
               tx.update(uref, { phraseId: null });
             }
           }
-          // close vote
-          tx.set(doc(db, 'rooms', ROOM_ID, 'state', 'vote'), { active: false, candidate: null, yes: {}, endedAt: serverTimestamp() });
+
+          // Close the vote (passed) so any concurrent transactions will see inactive and abort
+          tx.update(voteRef, { active: false, candidate: null, yes: {}, endedAt: serverTimestamp(), failed: false });
         });
-        // assign a new phrase to candidate
+
+        // Only the candidate should auto-get a new phrase after a pass
         if (PLAYER_ID && PLAYER_ID === v.candidate) {
-          await assignPhraseIfNeeded(true); // reroll to get a new one
+          await assignPhraseIfNeeded();
         }
       }
     }
@@ -439,17 +771,25 @@
         const u = d.data();
         const row = document.createElement('div');
         row.className = 'leader';
-        row.innerHTML = `<div>${idx+1}. <strong>${u.name || d.id}</strong> ${u.active ? '' : '<span class="pill">(left)</span>'}</div><div class="pill">${u.score || 0}</div>`;
+        row.innerHTML = `<div>${idx + 1}. <strong>${u.name || d.id}</strong> ${u.active ? '' : '<span class="pill">(left)</span>'}</div><div class="pill">${u.score || 0}</div>`;
         leadersEl.appendChild(row);
       });
       if (!snap.size) leadersEl.innerHTML = '<div class="muted">No players yet.</div>';
     });
 
-    // When profile changes, keep local state in sync
+    // When profile changes, keep local state in sync and update phrase UI if needed
     onSnapshot(collection(db, 'rooms', ROOM_ID, 'players'), (snap) => {
       if (!PLAYER_ID) return;
       const me = snap.docs.find(d => d.id === PLAYER_ID);
-      if (me) { myProfile = me.data(); }
+      if (me) {
+        const prevPhrase = myProfile?.phraseId || null;
+        myProfile = me.data();
+        const nextPhrase = myProfile?.phraseId || null;
+        if (prevPhrase !== nextPhrase) {
+          // update UI locks/text when phrase is gained or scrapped
+          hydrateMyPhrase();
+        }
+      }
     });
 
     // ===================== AUTO-RESTORE SESSION =====================
@@ -460,9 +800,9 @@
         PLAYER_ID = saved;
         // Mark active if account exists
         const ref = doc(db, 'rooms', ROOM_ID, 'players', PLAYER_ID);
-        const snap = await getDoc(ref).catch(()=>null);
+        const snap = await getDoc(ref).catch(() => null);
         if (snap && snap.exists()) {
-          await updateDoc(ref, { active: true, updatedAt: serverTimestamp() }).catch(()=>{});
+          await updateDoc(ref, { active: true, updatedAt: serverTimestamp() }).catch(() => { });
           afterJoinUI(true);
           await hydrateMyPhrase();
         }
@@ -470,4 +810,5 @@
     })();
   </script>
 </body>
+
 </html>
