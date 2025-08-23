@@ -757,10 +757,6 @@
           tx.update(voteRef, { active: false, candidate: null, yes: {}, endedAt: serverTimestamp(), failed: false });
         });
 
-        // Only the candidate should auto-get a new phrase after a pass
-        if (PLAYER_ID && PLAYER_ID === v.candidate) {
-          await assignPhraseIfNeeded();
-        }
       }
     }
 
