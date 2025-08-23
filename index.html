@@ -133,7 +133,6 @@
       border-color: #f1c40f66;
       background: #f1c40f22;
     }
-
     .section-title {
       margin: 0 0 8px;
       font-size: 14px;
@@ -619,7 +618,12 @@
         if (udata.phraseId) return; // already have one
 
         const poolRef = collection(db, 'rooms', ROOM_ID, 'phrases');
-        const qSnap = await getDocs(query(poolRef, where('assignedTo', '==', null), limit(1)));
+        const qSnap = await getDocs(query(
+          poolRef,
+          where('assignedTo', '==', null),
+          where('used', '==', false),
+          limit(1)
+        ));
         if (qSnap.empty) throw new Error('No phrases left');
 
         const pick = qSnap.docs[0];
